@@ -224,3 +224,55 @@ public function upload(Request $request)
 #### Improvements
 - Validate file type and size before uploading.
 - Store files using Laravel's built-in storage system for better handling of file paths.
+
+## User model 
+### Full name
+### Bad
+```
+public function getFullNameLong(): string
+{
+    return 'Mr. ' . $this->first_name . ' ' . $this->middle_name . ' ' . $this->last_name;
+}
+```
+#### Problems
+- Hardcoding the title "Mr." in the `getFullNameLong` method is not flexible. It assumes that every name is male and doesn’t allow flexibility for different titles (e.g., Mrs., Dr., etc.) or genders.
+### Good
+```
+public function getFullNameLong(): string
+{
+    return $this->title . ' ' . $this->first_name . ' ' . $this->middle_name . ' ' . $this->last_name;
+}
+```
+#### Improvements
+- Titles should be dynamic and flexible. If you need to address someone based on their gender or role (Mr., Mrs., Dr.), you should store it as an attribute of the user or pass it dynamically to the method.
+
+### Better
+```
+public function getFullNameLong(): string
+{
+    return $this->title . ' ' . ($this->first_name ?? '') . ' ' . ($this->middle_name ?? '') . ' ' . ($this->last_name ?? '');
+}
+```
+- Ensure that null values are handled properly. You can use conditional checks or the null coalescing operator (`??`) to handle missing values.
+- This will safely return an empty string for any missing part, but it might not be the ideal solution for all cases (you may want better error handling, like a fallback string).
+
+### Short name
+### Bad
+```
+public function getFullNameShort(): string
+{
+    return $this->first_name[0] . '. ' . $this->last_name;
+}
+```
+#### Problems
+- In the `getFullNameShort` method, the short name is formed by only the first letter of the first name (`$this->first_name[0]`). This is not very robust, as it assumes the first name is always at least one character long.
+### Good
+```
+public function getFullNameShort(): string
+{
+    $firstNameInitial = !empty($this->first_name) ? $this->first_name[0] . '.' : '';
+    return $firstNameInitial . ' ' . $this->last_name;
+}
+```
+#### Improvements
+- Add a check to ensure the first name is non-empty and handle edge cases where the first name may be missing or empty.
