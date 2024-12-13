@@ -276,3 +276,22 @@ public function getFullNameShort(): string
 ```
 #### Improvements
 - Add a check to ensure the first name is non-empty and handle edge cases where the first name may be missing or empty.
+
+## Best Practices accepted by 
+Laravel has some built in functionality and community packages can help instead of using 3rd party packages and tools.
+|      Task      | Standard Tools |            3rd Party Tools            | 
+|----------------|----------------|---------------------------------------|
+| Authorization  | Policies       | Entrust, Sentinel and other packages  |
+| Compiling Assests | Laravel Mix, Vite | Grunt, Gulp, and other packages |
+| Development Environment | Laravel Sail, Homestead | Docker |
+| Deployment | Laravel Forge | Deployer and other solutions | 
+| Unit Testing | PHPUnit | Pest |
+| Browser Testing | Laravel Dusk | Codeception | 
+| DB | Eloquent | SQL, Doctrine |
+| Templates | Blade | Twig |
+| Working With Data | Laravel Collections | Arrays |
+| Form Validation | Request classes | Validation in controller | 
+| Authentication | Built In | 3rd party packages, your own solution | 
+| API authentication | Laravel Passport, Laravel Sanctum | 3rd party JWT and OAuth packages | 
+| Creating an API | Built in | Dingo API or similar |
+| Working with DB structure | Migrations | Working directly with the DB |
