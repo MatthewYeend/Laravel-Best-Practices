@@ -279,9 +279,9 @@ public function getFullNameShort(): string
 
 ## Best Practices accepted by 
 Laravel has some built in functionality and community packages can help instead of using 3rd party packages and tools.
-|      Task      | Standard Tools |            3rd Party Tools            | 
-|----------------|----------------|---------------------------------------|
-| Authorization  | Policies       | Entrust, Sentinel and other packages  |
+| Task | Standard Tools | 3rd Party Tools | 
+|---|---|---|
+| Authorization | Policies | Entrust, Sentinel and other packages |
 | Compiling Assests | Laravel Mix, Vite | Grunt, Gulp, and other packages |
 | Development Environment | Laravel Sail, Homestead | Docker |
 | Deployment | Laravel Forge | Deployer and other solutions | 
@@ -295,3 +295,41 @@ Laravel has some built in functionality and community packages can help instead 
 | API authentication | Laravel Passport, Laravel Sanctum | 3rd party JWT and OAuth packages | 
 | Creating an API | Built in | Dingo API or similar |
 | Working with DB structure | Migrations | Working directly with the DB |
+| Localisition | Built in | 3rd party packages |
+| Realtime user interfaces | Laravel Echo, Pusher | 3rd party packages and working with WebSockets directly |
+| Generating testing data | Seeder classes, Model Factories, Faker | Creating testing data manually |
+| Task scheduling | Laravel Task Scheduler | Scripts and 3rd party packages |
+| DB | MySQL, PostgreSQL, SQLite, SQL Server | MongoDB|
+
+## Laravel Naming Conventions 
+To follow PSR standards
+And, follow naming conventions accepted by the Laravel community: 
+| What | How | Good | Bad |
+| Controller | Singular | ArticaleController | ArticalesController |
+| Route | Plural | articales/1 | artical/1 |
+| Route Name | Snake case with dot notation | users.show_active | users.show-active, show-active-users |
+| Model | Singular | User | Users |
+| hasOne or belongsTo relationship | Singular | articleComment  | articleComments, article_comments |
+| All other relationships | Plural | articleComments | articleComment, article_comments | 
+| Table | Plural | article_comments | article_comment, articleComments |
+| Pivot Table | Singular model names in alphabetical order | article_user | users_article, articles_users |
+| Table Column | Snake case without model name | meta_title | MetaTitle, article_meta_title |
+| Model Proprty | Snake case | $model->created_at | $model->createdAt |
+| Foreign Key | Singular model name with _suffix | article_id | ArticleId, id_article, article_id |
+| Primary Key | - | id | custom_id | 
+| Migration | - | 2017_01_01_000000_create_articles_table | 2017_01_01_000000_articles | 
+| Method | Camel Case | getAll | get_all |
+| Method in resource controller | Table | store | saveArticle |
+| Method in test class | Camel Case | testGuestCannotSeeArticle | test_guest_cannot_see_article | 
+| Variable | Camel Case | $articlesWithAuthor | $articles_with_author |
+| Collection | Descriptive, Plural | $activeUsers = User::active()->get() | $active, $data |
+| Object | Descriptive, Singular | $activeUser = User::active()->first() | $users, $obj | 
+| Config and language files index | Snake Case | artivles_enabled | ArticlesEnabled, articles-enabled |
+| View | Kabab Case | show-filtered.blade.php | showFiltered.blade.php, show_filtered.blade.php |
+| Config | Snake Case | google_calendar.php | googleCalendar.php, google-calendar.php |
+| Contract (Interface) | Adjective or noun | AuthenticationInterface | Authenticatable, IAuthentication | 
+| Trait | Adjective | Notifiable | NotificationTrait |
+| Trait (PSR) | Adjective | NotifiableTrait | Notification |
+| Enum | Singular | UserType | UserTypes, UserTypeEnum |
+| Form Request | Singular | UpdateUserRequest | UpdateUserFormRequest, UserFormRequest, UserRequest | 
+| Seeder | Singular | UserSeeder | UsersSeeder |
