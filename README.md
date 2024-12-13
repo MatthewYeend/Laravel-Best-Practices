@@ -305,6 +305,7 @@ Laravel has some built in functionality and community packages can help instead 
 To follow PSR standards
 And, follow naming conventions accepted by the Laravel community: 
 | What | How | Good | Bad |
+|---|---|---|
 | Controller | Singular | ArticaleController | ArticalesController |
 | Route | Plural | articales/1 | artical/1 |
 | Route Name | Snake case with dot notation | users.show_active | users.show-active, show-active-users |
