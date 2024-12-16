@@ -315,22 +315,22 @@ And, follow naming conventions accepted by the Laravel community:
 | Table | Plural | article_comments | article_comment, articleComments |
 | Pivot Table | Singular model names in alphabetical order | article_user | users_article, articles_users |
 | Table Column | Snake case without model name | meta_title | MetaTitle, article_meta_title |
-| Model Proprty | Snake case | $model->created_at | $model->createdAt |
-| Foreign Key | Singular model name with _suffix | article_id | ArticleId, id_article, article_id |
-| Primary Key | - | id | custom_id | 
-| Migration | - | 2017_01_01_000000_create_articles_table | 2017_01_01_000000_articles | 
-| Method | Camel Case | getAll | get_all |
-| Method in resource controller | Table | store | saveArticle |
-| Method in test class | Camel Case | testGuestCannotSeeArticle | test_guest_cannot_see_article | 
-| Variable | Camel Case | $articlesWithAuthor | $articles_with_author |
-| Collection | Descriptive, Plural | $activeUsers = User::active()->get() | $active, $data |
-| Object | Descriptive, Singular | $activeUser = User::active()->first() | $users, $obj | 
-| Config and language files index | Snake Case | artivles_enabled | ArticlesEnabled, articles-enabled |
-| View | Kabab Case | show-filtered.blade.php | showFiltered.blade.php, show_filtered.blade.php |
-| Config | Snake Case | google_calendar.php | googleCalendar.php, google-calendar.php |
-| Contract (Interface) | Adjective or noun | AuthenticationInterface | Authenticatable, IAuthentication | 
-| Trait | Adjective | Notifiable | NotificationTrait |
-| Trait (PSR) | Adjective | NotifiableTrait | Notification |
-| Enum | Singular | UserType | UserTypes, UserTypeEnum |
-| Form Request | Singular | UpdateUserRequest | UpdateUserFormRequest, UserFormRequest, UserRequest | 
-| Seeder | Singular | UserSeeder | UsersSeeder |
+| Model Proprty | Snake case | `$model->created_at` | `$model->createdAt` |
+| Foreign Key | Singular model name with _id suffix | `article_id` | `ArticleId`, `id_article`, `article_id` |
+| Primary Key | - | `id` | `custom_id` | 
+| Migration | - | `2017_01_01_000000_create_articles_table` | `2017_01_01_000000_articles` | 
+| Method | Camel Case | `getAll` | `get_all` |
+| Method in resource controller | Table | `store` | `saveArticle` |
+| Method in test class | Camel Case | `testGuestCannotSeeArticle` | `test_guest_cannot_see_article` | 
+| Variable | Camel Case | `$articlesWithAuthor` | `$articles_with_author` |
+| Collection | Descriptive, Plural | `$activeUsers = User::active()->get()` | `$active`, `$data` |
+| Object | Descriptive, Singular | `$activeUser = User::active()->first()` | `$users`, `$obj` | 
+| Config and language files index | Snake Case | `artivles_enabled` | `ArticlesEnabled`, `articles-enabled` |
+| View | Kabab Case | `show-filtered.blade.php` | `showFiltered.blade.php`, `show_filtered.blade.php` |
+| Config | Snake Case | `google_calendar.php` | `googleCalendar.php`, `google-calendar.php` |
+| Contract (Interface) | Adjective or noun | `AuthenticationInterface` | `Authenticatable`, `IAuthentication` | 
+| Trait | Adjective | `Notifiable` | `NotificationTrait` |
+| Trait (PSR) | Adjective | `NotifiableTrait` | `Notification` |
+| Enum | Singular | `UserType` | `UserTypes`, `UserTypeEnum` |
+| Form Request | Singular | `UpdateUserRequest` | `UpdateUserFormRequest`, `UserFormRequest`, `UserRequest` | 
+| Seeder | Singular | `UserSeeder` | `UsersSeeder` |
