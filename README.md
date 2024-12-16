@@ -306,15 +306,15 @@ To follow PSR standards
 And, follow naming conventions accepted by the Laravel community: 
 | What | How | Good | Bad |
 |---|---|---|---|
-| Controller | Singular | ArticaleController | ArticalesController |
-| Route | Plural | articales/1 | artical/1 |
-| Route Name | Snake case with dot notation | users.show_active | users.show-active, show-active-users |
-| Model | Singular | User | Users |
-| hasOne or belongsTo relationship | Singular | articleComment  | articleComments, article_comments |
-| All other relationships | Plural | articleComments | articleComment, article_comments | 
-| Table | Plural | article_comments | article_comment, articleComments |
-| Pivot Table | Singular model names in alphabetical order | article_user | users_article, articles_users |
-| Table Column | Snake case without model name | meta_title | MetaTitle, article_meta_title |
+| Controller | Singular | `ArticaleController` | `ArticalesController` |
+| Route | Plural | `articales/1` | `artical/1` |
+| Route Name | Snake case with dot notation | `users.show_active` | `users.show-active`, `show-active-users` |
+| Model | Singular | `User` | `Users` |
+| hasOne or belongsTo relationship | Singular | `articleComment` | `articleComments`, `article_comments` |
+| All other relationships | Plural | `articleComments` | `articleComment`, `article_comments` | 
+| Table | Plural | `article_comments` | `article_comment`, `articleComments` |
+| Pivot Table | Singular model names in alphabetical order | `article_user` | `users_article`, `articles_users` |
+| Table Column | Snake case without model name | `meta_title` | `MetaTitle`, `article_meta_title` |
 | Model Proprty | Snake case | `$model->created_at` | `$model->createdAt` |
 | Foreign Key | Singular model name with _id suffix | `article_id` | `ArticleId`, `id_article`, `article_id` |
 | Primary Key | - | `id` | `custom_id` | 
