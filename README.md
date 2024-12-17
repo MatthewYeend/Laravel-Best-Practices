@@ -277,6 +277,117 @@ public function getFullNameShort(): string
 #### Improvements
 - Add a check to ensure the first name is non-empty and handle edge cases where the first name may be missing or empty.
 
+## Hardcoding configuration values
+### Bad 
+```
+public function sendEmail()
+{
+    $to = 'example@example.com';
+    $subject = 'Hello World';
+    mail($to, $subject, 'This is a test email.');
+}
+```
+#### Problems
+- Email details are hardcoded, making the code inflexible and difficult to maintain.
+- It doesn't utilize Laravel's mail configuration.
+
+### Good
+```
+use Illuminate\Support\Facades\Mail;
+
+public function sendEmail()
+{
+    Mail::to(config('mail.default_to_address'))->send(new App\Mail\WelcomeMail());
+}
+```
+#### Improvements
+- Email recipients and settings are fetched from the configuration files (`config/mail.php`).
+- Using Laravel's `Mail` facade integrates better with SMTP, services like MailGun.
+
+## Blade Files
+### Bad
+```
+<h1>Users</h1>
+@foreach (User::all() as $user)
+    <p>{{ $user->name }}</p>
+@endforeach
+```
+#### Problems
+- Direct querying the database inside a Blade template is bad practice.
+- It tightly couples the view and database logic
+
+### Good 
+Controller
+```
+public function index()
+{
+    $users = User::all();
+    return view('users.index', compact('users'));
+}
+```
+Blade
+```
+<h1>Users</h1>
+@foreach ($users as $user)
+    <p>{{ $user->name }}</p>
+@endforeach
+```
+#### Improvements
+- Separation of concerns: The controller handles fetching the data, and the Blade template focuses only on displaying it.
+- Improved readability and maintainability.
+
+## Not using Route Model Binding
+### Bad
+```
+public function show($id)
+{
+    $user = User::find($id);
+    if (!$user) {
+        abort(404);
+    }
+    return view('user.show', compact('user'));
+}
+```
+#### Problems
+- Manual `find()` checks and error handling for invalid IDs.
+
+### Good
+```
+public function show(User $user)
+{
+    return view('user.show', compact('user'));
+}
+```
+#### Improvements
+- Laravel's Route Model Binding automatically fetches the `User` by ID.
+- If the user is not found, a 404 response is automatically retruned.
+`Route::get('/users/{user}', [UserController::class, 'show']);`
+
+## Hardcoding Dependencies instead of using Dependency Injection
+### Bad
+```
+public function sendNotification()
+{
+    $mailer = new \App\Services\Mailer();
+    $mailer->send('Hello World');
+}
+```
+#### Problems
+- Hardcoding dependencies makes the code less testable and harder to replace or mock.
+
+### Good
+```
+use App\Services\Mailer;
+
+public function sendNotification(Mailer $mailer)
+{
+    $mailer->send('Hello World');
+}
+```
+#### Improvements
+- Dependencies are injected into the method or constructor, improving testability.
+- Laravel's service container automatically resolves the required dependencies.
+
 ## Best Practices accepted by 
 Laravel has some built in functionality and community packages can help instead of using 3rd party packages and tools.
 | Task | Standard Tools | 3rd Party Tools | 
