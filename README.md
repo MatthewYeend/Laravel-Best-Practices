@@ -307,7 +307,7 @@ And, follow naming conventions accepted by the Laravel community:
 | What | How | Good | Bad |
 |---|---|---|---|
 | Controller | Singular | `ArticaleController` | `ArticalesController` |
-| Route | Plural | `articales/1` | `artical/1` |
+| Route | Plural | `articles/1` | `article/1` |
 | Route Name | snake_case with dot notation | `users.show_active` | `users.show-active`, `show-active-users` |
 | Model | Singular | `User` | `Users` |
 | hasOne or belongsTo relationship | Singular | `articleComment` | `articleComments`, `article_comments` |
@@ -325,7 +325,7 @@ And, follow naming conventions accepted by the Laravel community:
 | Variable | camelCase | `$articlesWithAuthor` | `$articles_with_author` |
 | Collection | Descriptive, Plural | `$activeUsers = User::active()->get()` | `$active`, `$data` |
 | Object | Descriptive, Singular | `$activeUser = User::active()->first()` | `$users`, `$obj` | 
-| Config and language files index | snake_case | `artivles_enabled` | `ArticlesEnabled`, `articles-enabled` |
+| Config and language files index | snake_case | `articles_enabled` | `ArticlesEnabled`, `articles-enabled` |
 | View | kabab-case | `show-filtered.blade.php` | `showFiltered.blade.php`, `show_filtered.blade.php` |
 | Config | snake_case | `google_calendar.php` | `googleCalendar.php`, `google-calendar.php` |
 | Contract (Interface) | Adjective or noun | `AuthenticationInterface` | `Authenticatable`, `IAuthentication` | 
