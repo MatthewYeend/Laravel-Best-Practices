@@ -30,6 +30,7 @@ class UserController extends Controller
 - Direct database queries in controllers are not clean and violate the separation of concerns.
 - Missing validation for incoming data.
 - No use of Eloquent, which is one of Laravel's core strengths.
+
 ### Good
 ```
 class UserController extends Controller
@@ -58,6 +59,33 @@ class UserController extends Controller
 #### Improvements
 - Using Eloquent ORM for cleaner, more readable queries.
 - Data validation is handled by a custom `UserRequest` form request, improving code separation and reusability.
+
+## Direct SQL Queries in Controllers 
+### Bad 
+```
+public function index()
+{
+    $users = DB::select('SELECT * FROM users');
+    return response()->json($users);
+}
+```
+#### Problems
+- Using raw SQL in the controllers violates the MVC principle, making code less readable and harder to maintain.
+- There's no use of Laravel's Eloquent ORM, which provides more readable and safer database interactions.
+
+### Good
+```
+use App\Models\User;
+
+public function index()
+{
+    $users = User::all();
+    return response()->json($users);
+}
+```
+#### Improvements
+- Uses Eloquent ORM, which improves readability and abstracts database operations.
+- Cleanerand more readable code.
 
 ## Database Querying
 ### Bad
@@ -387,6 +415,90 @@ public function sendNotification(Mailer $mailer)
 #### Improvements
 - Dependencies are injected into the method or constructor, improving testability.
 - Laravel's service container automatically resolves the required dependencies.
+
+## Using `env()` in code outside of config files
+### Bad
+```
+public function uploadFile()
+{
+    $path = env('UPLOAD_PATH', 'uploads/default');
+    Storage::put($path . '/file.txt', 'content');
+}
+```
+#### Problems
+- `env()` should only be used in configuration files, not directly in the application logic.
+- It makes testing harder because `env()` is only loaded during runtime.
+
+### Good
+Inside `config/filesystems.php`
+```
+upload_path => env('UPLOADED_PATH', 'uploads/default');
+```
+Inside controller 
+```
+public function uploadFile()
+{
+    $path = config('filesystems.upload_path');
+    Storage::put($path . '/file.txt', 'content');
+}
+```
+#### Improvements
+- Configuration values are centralised in config files.
+- `config()` allows the use of caching, improving performance.
+
+## Mass assignment without guarded fields
+### Bad
+```
+public function store(Request $request)
+{
+    User::create($request->all());
+}
+```
+#### Problems
+- This allos all user input to be mass assigned, making the application vulnerable to mass assign attacks.
+
+### Good
+Inside `User` model
+```
+protected $fillable = ['name', 'email', 'password'];
+```
+Inside the controller
+```
+public function store(Request $request)
+{
+    $data = $request->only(['name', 'email', 'password']);
+    $data['password'] = bcrypt(data['password']);
+
+    User::create($data);
+}
+```
+#### Improvements
+- The `fillable` property explicitly defines which fields can be mass assigned.
+- Prevents unauthorised fileds from being updated maliciously.
+
+## Lack of pagination for large datasets
+### Bad
+```
+public function index()
+{
+    $users = User::all();
+    return response()->json($users);
+}
+```
+#### Problems
+- Fetching all records can cause issues for large datasets.
+
+### Good
+```
+public function index()
+{
+    $users = User::paginate(10);
+    return response()->json($users);
+}
+```
+#### Improvements
+- Adds pagination to avoid loading a large dataset into memory.
+- Improves application performance.
 
 ## Best Practices accepted by 
 Laravel has some built in functionality and community packages can help instead of using 3rd party packages and tools.
