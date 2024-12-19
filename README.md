@@ -345,7 +345,8 @@ public function sendEmail()
 - Direct querying the database inside a Blade template is bad practice.
 - It tightly couples the view and database logic
 
-### Good 
+### Good 
+
 Controller
 ```
 public function index()
@@ -361,7 +362,7 @@ Blade
     <p>{{ $user->name }}</p>
 @endforeach
 ```
-#### Improvements
+#### Improvements
 - Separation of concerns: The controller handles fetching the data, and the Blade template focuses only on displaying it.
 - Improved readability and maintainability.
 
@@ -396,7 +397,7 @@ public function show($id)
     return view('user.show', compact('user'));
 }
 ```
-#### Problems
+#### Problems
 - Manual `find()` checks and error handling for invalid IDs.
 
 ### Good
@@ -411,7 +412,7 @@ public function show(User $user)
 - If the user is not found, a 404 response is automatically retruned.
 `Route::get('/users/{user}', [UserController::class, 'show']);`
 
-## Hardcoding Dependencies instead of using Dependency Injection
+## Hardcoding Dependencies instead of using Dependency Injection
 ### Bad
 ```
 public function sendNotification()
