@@ -333,6 +333,7 @@ public function sendEmail()
 - Using Laravel's `Mail` facade integrates better with SMTP, services like MailGun.
 
 ## Blade Files
+### Direct querying in Blade files
 ### Bad
 ```
 <h1>Users</h1>
@@ -363,6 +364,25 @@ Blade
 #### Improvements
 - Separation of concerns: The controller handles fetching the data, and the Blade template focuses only on displaying it.
 - Improved readability and maintainability.
+
+### Using `echo` in Blade files
+### Bad
+```
+<p><?php echo $user->name; ?></p>
+```
+#### Problems
+- It’s verbose and does not take advantage of Laravel's Blade template engine.
+
+### Good
+```
+<p>{{ $user->name }}</p>
+```
+### Even better
+```
+<p>{{ $user->name ?? 'Guest' }}</p>
+```
+#### Improvements
+- Blade is more concise, readable, and automatically escapes output to prevent XSS attacks. The fallback ensures proper defaults.
 
 ## Not using Route Model Binding
 ### Bad
@@ -415,6 +435,21 @@ public function sendNotification(Mailer $mailer)
 #### Improvements
 - Dependencies are injected into the method or constructor, improving testability.
 - Laravel's service container automatically resolves the required dependencies.
+
+## Hardcoding configurations
+### Bad
+```
+$apiKey = '12345'; // API key hardcoded
+```
+#### Problems
+- Hardcoding sensitive data like API keys or configurations makes it difficult to change and insecure if the code is shared.
+
+### Good
+```
+$apiKey = config('services.api.key');
+```
+#### Improvements
+- Using configuration files centralises sensitive data and allows for environment-specific configurations.
 
 ## Using `env()` in code outside of config files
 ### Bad
