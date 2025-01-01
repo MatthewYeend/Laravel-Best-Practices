@@ -1,5 +1,5 @@
 # Laravel Best Practices
-## Controller Code
+## Database Interaction
 ### **Bad**
 ```php
 class ProductController extends Controller
@@ -244,18 +244,11 @@ public function index()
 ```php
 $comments = DB::table('comments')->where('post_id', $postId)->get();
 ```
-#### Problems
-- Manual query instead of leveraging relationships.
-
 ### **Good**
 ```php
 $comments = $post->comments;
 ```
-#### Improvements
-- Use Eloquent relationships to simplify queries.
-
 ---
-
 ## Testing
 ### **Bad**
 ```php
