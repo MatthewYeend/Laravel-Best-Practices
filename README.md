@@ -597,8 +597,8 @@ public function index()
 }
 ```
 ---
-##Use config and language files, constants instead of text in the code
-###**Bad**
+## Use config and language files, constants instead of text in the code
+### **Bad**
 ```php
 public function isNormal(): bool
 {
@@ -607,7 +607,7 @@ public function isNormal(): bool
 
 return back()->with('message', 'Your article has been added!');
 ```
-###**Good**
+### **Good**
 ```php
 public function isNormal()
 {
