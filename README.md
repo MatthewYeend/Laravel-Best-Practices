@@ -701,6 +701,115 @@ foreach ($users as $user) {
 }
 ```
 ---
+## Testing Practices
+### **Bad**
+```php
+public function testUserCanLogin()
+{
+    $response = $this->post('/login', ['email' => 'user@example.com', 'password' => 'password']);
+    $response->assertStatus(200);
+}
+```
+### **Good**
+```php
+public function testUserCanLogin()
+{
+    $response = $this->post('/login', ['email' => 'user@example.com', 'password' => 'password']);
+    $response->assertStatus(200)
+        ->assertJsonStructure(['token']);
+}
+```
+---
+## Service Container Binding
+### **Bad**
+```php
+$userRepo = new EloquentUserRepository();
+```
+### **Good**
+Bind the repository in a service provider
+```php
+$this->app->bind(UserRepository::class, EloquentUserRepository::class);
+```
+Usage:
+```php
+$userRepo = app(UserRepository::class);
+```
+---
+## Repository Pattern
+### **Bad**
+```php
+class UserController extends Controller
+{
+    public function index()
+    {
+        $users = User::all();
+        return view('users.index', compact('users'));
+    }
+}
+```
+### **Good**
+```php
+interface UserRepository
+{
+    public function getAll();
+}
+```
+Repository Implementation:
+```php
+class EloquentUserRepository implements UserRepository
+{
+    public function getAll()
+    {
+        return User::all();
+    }
+}
+```
+Controller Usage:
+```php
+class UserController extends Controller
+{
+    private UserRepository $userRepository;
+
+    public function __construct(UserRepository $userRepository)
+    {
+        $this->userRepository = $userRepository;
+    }
+
+    public function index()
+    {
+        $users = $this->userRepository->getAll();
+        return view('users.index', compact('users'));
+    }
+}
+```
+---
+## Using Static Methods
+### **Bad**
+```php
+class UserHelper
+{
+    public static function isAdmin($user)
+    {
+        return $user->role === 'admin';
+    }
+}
+```
+### **Good**
+```php
+class UserHelper
+{
+    public function isAdmin($user)
+    {
+        return $user->role === 'admin';
+    }
+}
+```
+Usage:
+```php
+$userHelper = new UserHelper();
+$userHelper->isAdmin($user);
+```
+---
 ## Best Practices accepted by community
 Laravel has some built in functionality and community packages can help instead of using 3rd party packages and tools.
 | Task | Standard Tools | 3rd Party Tools | 
