@@ -810,6 +810,31 @@ $userHelper = new UserHelper();
 $userHelper->isAdmin($user);
 ```
 ---
+## Queue Jobs
+### **Bad**
+```php
+public function sendNotification(Request $request)
+{
+    Mail::to($request->email)->send(new NotificationMail());
+}
+```
+### **Good**
+```php
+NotificationJob::dispatch($request->email);
+```
+Job Implementation:
+```php
+class NotificationJob implements ShouldQueue
+{
+    public function __construct(public string $email) {}
+
+    public function handle()
+    {
+        Mail::to($this->email)->send(new NotificationMail());
+    }
+}
+```
+---
 ## Best Practices accepted by community
 Laravel has some built in functionality and community packages can help instead of using 3rd party packages and tools.
 | Task | Standard Tools | 3rd Party Tools | 
