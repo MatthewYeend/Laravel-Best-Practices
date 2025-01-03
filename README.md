@@ -617,6 +617,90 @@ public function isNormal()
 return back()->with('message', __('app.article_added'));
 ```
 ---
+## Using Constants for Repeated Values
+### **Bad**
+```php
+if ($user->type === 'admin') {
+    // Perform action
+}
+```
+### **Good**
+```php
+class User
+{
+    public const TYPE_ADMIN = 'admin';
+    public const TYPE_CUSTOMER = 'customer';
+}
+```
+Usage
+```php
+if ($user->type === User::TYPE_ADMIN) {
+    // Perform action
+}
+```
+---
+## API Rate Limiting
+### **Bad**
+```php
+Route::get('/api/resource', [ApiController::class, 'index']);
+```
+### **Good**
+```php
+Route::middleware('throttle:60,1')->get('/api/resource', [ApiController::class, 'index']);
+```
+---
+## Form Input Sanitization
+### **Bad**
+```php
+$input = $request->all();
+```
+### ***Good**
+```php
+$input = $request->only(['name', 'email', 'password']);
+```
+---
+## Custom Helpers
+### **Bad**
+```php
+function calculateAge($birthdate)
+{
+    return \Carbon\Carbon::parse($birthdate)->age;
+}
+```
+### **Good**
+Create a dedicated helper file:
+```php
+if (!function_exists('calculateAge')) {
+    function calculateAge($birthdate)
+    {
+        return \Carbon\Carbon::parse($birthdate)->age;
+    }
+}
+```
+Register the helper in `composer.json`:
+```php
+"autoload": {
+    "files": [
+        "app/helpers.php"
+    ]
+}
+```
+---
+## Avoid Duplicate Queries
+### **Bad**
+```php
+foreach ($users as $user) {
+    $profile = $user->profile; // Triggers N+1 query issue
+}
+```
+### **Good**
+```php
+$users = User::with('profile')->get();
+foreach ($users as $user) {
+    $profile = $user->profile;
+}
+```
+---
 ## Best Practices accepted by community
 Laravel has some built in functionality and community packages can help instead of using 3rd party packages and tools.
 | Task | Standard Tools | 3rd Party Tools | 
