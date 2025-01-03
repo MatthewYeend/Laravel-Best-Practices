@@ -654,7 +654,7 @@ Route::middleware('throttle:60,1')->get('/api/resource', [ApiController::class, 
 ```php
 $input = $request->all();
 ```
-### ***Good**
+### **Good**
 ```php
 $input = $request->only(['name', 'email', 'password']);
 ```
