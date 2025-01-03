@@ -1,4 +1,47 @@
 # Laravel Best Practices
+<!-- TOC -->
+## Table of Contents
+1. [Database Interaction](#database-interaction)
+2. [Middleware](#middleware)
+3. [Caching](#caching)
+4. [Events](#events)
+5. [Logging](#logging)
+6. [Commands](#commands)
+7. [Notifications](#notifications)
+8. [API Responses](#api-responses)
+9. [Blade Templates](#blade-templates)
+10. [Direct querying in Blade files](#direct-querying-in-blade-files)
+11. [Using `echo` in Blade files](#using-echo-in-blade-files)
+12. [Eloquent Relationships](#eloquent-relationships)
+13. [Testing](#testing)
+14. [Direct SQL Queries in Controllers](#direct-sql-queies-in-controllers)
+15. [Database Querying](#database-querying)
+16. [Validation](#validation)
+17. [Security Concerns](#security-concerns)
+18. [Error Handling](#error-handling)
+19. [File Uploads](#file-uploads)
+20. [User model](#user-model)
+21. [Hardcoding configuration values](#hardcoding-configuration-values)
+22. [Not using Route Model Binding](#not-using-route-model-binding)
+23. [Hardcoding Dependencies instead of using Dependency Injection](#hardcoding-dependencies-instead-of-using-dependency-injection)
+24. [Hardcoding configurations](#hardcoding-configurations)
+25. [Mass assignment without guarded fields](#mass-assignment-without-guarded-fields)
+26. [Lack of pagination for large datasets](#lack-of-pagination-for-large-datasets)
+27. [Use config and language files, constants instead of text in the code](#use-config-and-language-files-constants-instead-of-text-in-the-code)
+28. [Use Constants for Repeated Values](#use-constants-for-repeated-values)
+29. [API Rate Limiting](#api-rate-limiting)
+30. [Form Input Sanitazation](#form-input-sanitazation)
+31. [Custom Helpers](#custom-helpers)
+32. [Avoid Duplicate Queries](#avoid-duplicate-queries)
+33. [Testing Practices](#testing-practices)
+34. [Service Container Binding](#service-container-binding)
+35. [Repository Pattern](#repository-pattern)
+36. [Using Static Methods](#using-static-methods)
+37. [Queue Jobs](#queue-jobs)
+38. [Best Practices accepted by community](#best-practices-accepted-by-community)
+39. [Laravel Naming Conventions](#laravel-naming-conventions)
+<!-- /TOC -->
+
 ## Database Interaction
 ### **Bad**
 ```php
