@@ -40,6 +40,10 @@
 37. [Queue Jobs](#queue-jobs)
 38. [Best Practices accepted by community](#best-practices-accepted-by-community)
 39. [Laravel Naming Conventions](#laravel-naming-conventions)
+40. [Interview Questions](#interview-questions)
+    1. [Beginner](#beginner)
+    2. [Intermediate](#intermediate)
+    3. [Expert](#expert)
 <!-- /TOC -->
 
 ## Database Interaction
@@ -937,3 +941,21 @@ And, follow naming conventions accepted by the Laravel community:
 | Seeder | Singular | `UserSeeder` | `UsersSeeder` |
 | Language File Names | Lower case, snake_case | `user_management.php`, `order_status.php` | `UserManagement.php`, `OrderStatus.php` |
 | Language Files | Lower case, snake_case | `'login_failed'`, `'user'` | `'LoginFailed'`, `'User'` |
+---
+## Interview Questions
+### Beginner
+- What is Laravel?
+  - Laravel is a PHP framework based on the MVC (Model-View-Controller) architecture, designed to make web development easier and faster by providing built-in features like routing, authentication, session management, and more.
+- What is Composer in Laravel?
+  - Composer is a dependancy manager for PHP. It helps manage the libraries and packages required for a Laravel project.
+- What are the benefits of using Laravel?
+  - Built-in tools for common tasks like routing, sessiong handling, and authentication.
+  - Elegant syntax and expressive ORM (Eloquent).
+  - Scalability and maintainability.
+  - Robust security features.
+- What are service providers in Laravel?
+  - Service providers are the central place to configure and bootstrap your application. Laravel's core services are all bootstrapped through service providers.
+- What is the Artisan CLI tool?
+  - Artisan is Laravel's command-line interface that provides various commands to assist developers, such as creating controllers, migrations, and more
+### Intermediate
+### Expert
