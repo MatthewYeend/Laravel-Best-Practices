@@ -976,3 +976,36 @@ And, follow naming conventions accepted by the Laravel community:
 - What is the differences between `require` and `use` in Laravel?
   - `require` includes files in PHP, whereas `use` is used to include namespaces or traits.
 ### Expert
+- Explain service container in Laravel.
+  - The service container is a powerful tool for managing class dependencies and performing dependency injection.
+- What is a Repository pattern in Laravel?
+  - The Repository pattern separates the logic that retrieves data from the database from the business logic. It improves code readability and testability.
+- What is Laravel Event Broadcasting?
+  - Broadcasting in Laravel allows you to share events between the server-side and client-side applications, enabling real-time features like notifications.
+- What is the difference between `hasOne` and `belongsTo` relationships in Laravel?
+  - `hasOne` defines a one-to-one relationship where the parent model owns the related model. `belongsTo` defines the inverse relationship where the related model is owned by the parent model.
+- What is a policy in Laravel?
+  - Policies are classes that organize authorization logic for a specific model.
+- How do you optimize a Laravel application?
+  - Use caching for routes, views, and queries.
+  - Optimize the database with proper indexing.
+  - Use eager loading to avoid N+1 query problems.
+  - Enable query caching.
+- How does Laravel handle error and exception handling?
+  - Laravel uses the `App\Exceptions\Handler` class to handle all exceptions. You can log errors, render specific views, or redirect users.
+- What is the difference between `@include`, `@yield`, and `@section` in Blade?
+  - `@include` includes a partial view.
+  - `@yield` defines a placeholder for a section in a layout.
+  - `@section` defines content for a section in the layout.
+- How can you implement custom helper functions in Laravel?
+  - Create a helper file, define functions, and load it via Composer's autoload configuration in `composer.json`.
+- What are jobs and workers in Laravel?
+  - Jobs represent tasks to be processed, and workers are the processes that execute those tasks.
+- What is Laravel Telescope?
+  - Telescope is a debugging assistant for Laravel that provides insights into requests, jobs, database queries, and more.
+- How can you implement caching in Laravel?
+  - You can use caching drivers like file, database, Redis, or Memcached. Example:
+    ```php
+    Cache::put('key', 'value', $seconds);
+    Cache::get('key');
+    ```
