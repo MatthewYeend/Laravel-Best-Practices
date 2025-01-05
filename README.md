@@ -958,4 +958,21 @@ And, follow naming conventions accepted by the Laravel community:
 - What is the Artisan CLI tool?
   - Artisan is Laravel's command-line interface that provides various commands to assist developers, such as creating controllers, migrations, and more
 ### Intermediate
+- Explain Eloquent ORM in Laravel.
+  - Eloquent is Laravel's built-in ORM, providing an easy-to-use Active Record implementation. It allows developers to interact with the database by defining models and relationships instead of writing raw SQL queries.
+- What are middleware in Laravel?
+  - Middleware is a way to filter HTTP requests entering your application. Examples include authentication and logging.
+- What are migrations in Laravel?
+  - Migrations are version control for your database. They allow you to modify the database schema programmatically and share the schema across teams.
+- How does routing work in Laravel?
+  - Routes in Laravel are defined in `routes/web.php` for web routes and `routes/api.php` for API routes. A typical route is defined using:
+    ```php
+    Route::get('/path', [Controller::class, 'method']);
+    ```
+- How do you handle validation in Laravel?
+  - Validation can be handled using the `validate` method in a controller or by creating a Form Request class.
+- What are queues in Laravel?
+  - Queues allow you to defer the processing of time-consuming tasks, such as sending emails, or processing large files.
+- What is the differences between `require` and `use` in Laravel?
+  - `require` includes files in PHP, whereas `use` is used to include namespaces or traits.
 ### Expert
