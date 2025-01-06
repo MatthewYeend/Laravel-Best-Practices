@@ -44,6 +44,7 @@
     1. [Beginner](#beginner)
     2. [Intermediate](#intermediate)
     3. [Expert](#expert)
+    4. [General](#general)
 <!-- /TOC -->
 
 ## Database Interaction
@@ -1009,3 +1010,14 @@ And, follow naming conventions accepted by the Laravel community:
     Cache::put('key', 'value', $seconds);
     Cache::get('key');
     ```
+### General
+- What are facades in Laravel? How do they work?
+  - Facades provide a static interface to classes in the service container. They act as a proxy to underlying classes and allow calling methods without needing to instantiate the class. Example: `Cache::get('key')`.
+- What is the difference between `public`, `protected`, and `private` in a Laravel context?
+  - `public`: Methods or properties accessible from anywhere.
+  - `protected`: Accessible only within the class and its subclasses.
+  - `private`: Accessible only within the class where it's declared.
+- What is the use of the `boot` method in Eloquent models?
+  - The `boot` method is used to observe or hook into Eloquent model events (e.g., creating, updating, deleting) and to set global scopes.
+- What are traits in Laravel?
+  - Traits are used to include reusable methods in multiple classes. Example: Using `SoftDeletes` to enable soft deletion functionality in models.
