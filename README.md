@@ -46,6 +46,7 @@
     3. [Expert](#expert)
     4. [General](#general)
     5. [Authentication and Authorization Questions](#authentication-and-authorization-questions)
+    6. [Miscellaneous Questions](#miscellaneous-questions)
 <!-- /TOC -->
 
 ## Database Interaction
@@ -1035,3 +1036,22 @@ And, follow naming conventions accepted by the Laravel community:
     ```
 - What is Sanctum in Laravel? How is it different from Passport?
   - Sanctum is a lightweight authentication system for API tokens and SPA authentication. Passport is for full OAuth2 authentication.
+### Miscellaneous Questions
+- What is a Laravel package? How do you create one?
+  - Packages extend Laravel's functionality. To create one:
+      - Set up a package directory structure.
+      - Define service providers.
+      - Publish assets or configurations as needed.
+- What is the `event:listen` and `event:dispatch` mechanism?
+  - `event:listen` registers an event listener, while `event:dispatch` triggers the event. Example:
+    ```php
+    Event::listen(UserRegistered::class, SendWelcomeEmail::class);
+    event(new UserRegistered($user));
+    ```
+- What is Laravel Horizon?
+  - Horizon is a dashboard tool for monitoring and managing Laravel queues powered by Redis.
+- Explain the `$fillable` and `$guarded` properties in Laravel models.
+  - `$fillable`: Specifies fields allowed for mass assignment.
+  - `$guarded`: Specifies fields that are not mass assignable.
+- What is the purpose of `broadcastOn()` in Laravel events?
+  - It defines the channels the event should be broadcast on.
