@@ -45,6 +45,7 @@
     2. [Intermediate](#intermediate)
     3. [Expert](#expert)
     4. [General](#general)
+    5. [Authentication and Authorization Questions](#authentication-and-authorization-questions)
 <!-- /TOC -->
 
 ## Database Interaction
@@ -1021,3 +1022,16 @@ And, follow naming conventions accepted by the Laravel community:
   - The `boot` method is used to observe or hook into Eloquent model events (e.g., creating, updating, deleting) and to set global scopes.
 - What are traits in Laravel?
   - Traits are used to include reusable methods in multiple classes. Example: Using `SoftDeletes` to enable soft deletion functionality in models.
+### Authentication and Authorization Questions
+- What is the difference between `Auth::attempt()` and `Auth::login()`?
+  - `Auth::attempt()` validates user credentials and logs in the user if valid.
+  - `Auth::login()` directly logs in a user without validating credentials.
+- How does the Laravel Gate work?
+  - Gates provide a way to define and authorize user actions at a higher level, like determining if a user can update a post:
+    ```php
+    Gate::define('update-post', function ($user, $post) {
+        return $user->id === $post->user_id;
+    });
+    ```
+- What is Sanctum in Laravel? How is it different from Passport?
+  - Sanctum is a lightweight authentication system for API tokens and SPA authentication. Passport is for full OAuth2 authentication.
