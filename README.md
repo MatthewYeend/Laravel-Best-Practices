@@ -1055,3 +1055,24 @@ And, follow naming conventions accepted by the Laravel community:
   - `$guarded`: Specifies fields that are not mass assignable.
 - What is the purpose of `broadcastOn()` in Laravel events?
   - It defines the channels the event should be broadcast on.
+- What is the difference between `session` and `cache` in Laravel?
+  - `session` stores user specific data for the duration of the user's session (e.g. user login info). It typically uses storage like files, database, or cookies
+  - `cache` temporarily stores application data to optimise performance. It uses faster storage systems like Redis or Memchached.
+- What is the use of the `dd()` function in Laravel?
+  - `dd()` stands for "Dump and Die". It is a debugging function used to dump variable contents and stop script execution.
+- How does Laravel handle APIs?
+  - Laravel provides tools for building RESTful APIs:
+    - Use `routes/api.php` for API routes.
+    - Return `JSON` responses:
+      ```php
+      return response()->json(['data' => $data]);
+      ```
+    - Use `Resource` classes for API responses:
+      ```php
+      php artisan make:resource UserResource
+      ```
+    - Example in controller:
+      ```php
+      return new UserResource(User::find(1));
+      ```
+      
