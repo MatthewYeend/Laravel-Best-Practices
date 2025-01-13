@@ -1075,4 +1075,10 @@ And, follow naming conventions accepted by the Laravel community:
       ```php
       return new UserResource(User::find(1));
       ```
-      
+- What is Laravel Passport
+  - Laravel Passport is a package for API authentication using OAuth2. It provides a full OAuth2 server implementation for your application, allowing you to secure your APIs and manage authentication tokens for users.
+- What is CSRF protection in Laravel?
+  - CSRF (Cross-Site Request Forgery) protection in Laravel is enabled by default. Laravel uses a CSRF token to verify that the incoming request is from the authenticated user and not from a malicious site. This token is included in each form by using `@csrf` directive in Blade templates.
+- What are seeding and factories in Laravel?
+  - **Seeder:** Seeder classes are used to populate the database with sample data.
+  - **Factory:** Factories are used to generate fake data for models. They can be used to create many records easily.
