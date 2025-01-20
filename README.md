@@ -38,9 +38,11 @@
 35. [Repository Pattern](#repository-pattern)
 36. [Using Static Methods](#using-static-methods)
 37. [Queue Jobs](#queue-jobs)
-38. [Best Practices accepted by community](#best-practices-accepted-by-community)
-39. [Laravel Naming Conventions](#laravel-naming-conventions)
-40. [Interview Questions](#interview-questions)
+38. [Centralised Business Logic](#centralised-business-logic)
+39. [Use Proper Exception Handling](#use-proper-exception-handling)
+40. [Best Practices accepted by community](#best-practices-accepted-by-community)
+41. [Laravel Naming Conventions](#laravel-naming-conventions)
+42. [Interview Questions](#interview-questions)
     1. [Beginner](#beginner)
     2. [Intermediate](#intermediate)
     3. [Expert](#expert)
@@ -883,6 +885,50 @@ class NotificationJob implements ShouldQueue
         Mail::to($this->email)->send(new NotificationMail());
     }
 }
+```
+---
+## Centralised Business Logic
+### **Bad**
+```php
+public function calculateDiscount($price, $discountPercentage)
+{
+    return $price - ($price * ($discountPercentage / 100));
+}
+```
+### **Good**
+```php
+class DiscountService
+{
+    public function calculate($price, $discountPercentage)
+    {
+        return $price - ($price * ($discountPercentage / 100));
+    }
+}
+```
+---
+## Use Proper Exception Handling
+### **Bad**
+```php
+public function show($id)
+{
+    $user = User::find($id);
+    
+    if (!$user) {
+        return response()->json(['error' => 'User not found'], 404);
+    }
+    
+    return response()->json($user);
+}
+
+```
+### **Good**
+```php
+public function show($id)
+{
+    $user = User::findOrFail($id);
+    return response()->json($user);
+}
+
 ```
 ---
 ## Best Practices accepted by community
