@@ -153,6 +153,7 @@ public function handle($request, Closure $next)
     return $next($request);
 }
 ```
+The **Good** approach improves security and readability by properly checking if the user is authenticated before accessing their role. It uses `abort(403)` for cleaner error handling and leverages a role-checking method (`hasRole()`), making the code more reusable and maintainable.
 ---
 ## Caching
 ### **Bad**
@@ -166,6 +167,7 @@ $products = Cache::remember('products', 3600, function () {
     return Product::all();
 });
 ```
+The **Good** approach improves performance and efficiency by using `Cache::remember()`, which avoids unnecessary database queries. It only queries the database if the cache is empty, making the code more optimized, readable, and maintainable.
 ---
 ## Events
 ### **Bad**
@@ -191,6 +193,7 @@ public function handle(UserRegistered $event)
     Mail::to($event->user->email)->send(new WelcomeMail($event->user));
 }
 ```
+The **Good** approach follows the event-driven design pattern, improving scalability and maintainability. By dispatching a `UserRegistered` event, it decouples the email-sending logic from the controller, making it easier to manage and extend (e.g., logging, notifications). This keeps the controller clean and adheres to Single Responsibility Principle (SRP).
 ---
 ## Logging
 ### **Bad**
@@ -201,6 +204,7 @@ Log::info('Something went wrong: ' . $e->getMessage());
 ```php
 Log::error('Exception encountered.', ['error' => $e->getMessage(), 'trace' => $e->getTraceAsString()]);
 ```
+The Good approach improves error logging and debugging by using `Log::error()` instead of `Log::info()`, ensuring proper log severity. It also logs structured data (`error` message and `trace`), making it easier to analyse issues and track errors efficiently.
 ---
 ## Commands
 ### **Bad**
@@ -217,6 +221,7 @@ public function handle()
     Order::pending()->delete();
 }
 ```
+The **Good** approach improves readability, maintainability, and reusability by using Eloquent instead of raw queries. It leverages a query scope (`pending()`) for filtering, making the code cleaner and reusable across the application.
 ---
 ## Notifications
 ### **Bad**
@@ -227,6 +232,7 @@ Mail::to($user->email)->send(new ResetPasswordMail($token));
 ```php
 $user->notify(new ResetPasswordNotification($token));
 ```
+The **Good** approach improves flexibility and maintainability by using Laravel's notification system instead of directly sending an email. This allows sending password reset notifications via multiple channels (e.g., email, SMS) without modifying the core logic, making the code more scalable and reusable.
 ---
 ## API Responses
 ### **Bad**
@@ -240,6 +246,7 @@ return response()->json([
     'data' => $data,
 ], 200);
 ```
+The **Good** approach improves consistency and clarity in API responses by explicitly including a `status` field, making it easier for clients to handle responses. This follows best practices for structured API responses, improving readability and maintainability.
 ---
 ## Blade Templates
 ### **Bad**
