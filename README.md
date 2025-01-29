@@ -76,6 +76,8 @@ class ProductController extends Controller
     }
 }
 ```
+The **Good** approach follows best practices by using Eloquent ORM instead of raw queries, making the code more readable, maintainable, and reusable. It utilises a query scope (`active()`) for filtering, improving reusability, and `compact()` for cleaner variable passing to the view.
+
 ### Bad
 ```php
 class UserController extends Controller
@@ -126,6 +128,7 @@ class UserController extends Controller
     }
 }
 ```
+The **Good** approach improves readability, maintainability, and security by using Eloquent instead of raw queries. It leverages a Form Request (`UserRequest`) for validation, keeping the controller clean and ensuring data integrity. Using `User::create()` follows Laravel's mass assignment best practices, making the code more concise and easier to manage.
 ---
 ## Middleware
 ### **Bad**
