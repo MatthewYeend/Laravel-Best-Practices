@@ -14,7 +14,7 @@
 11. [Using `echo` in Blade files](#using-echo-in-blade-files)
 12. [Eloquent Relationships](#eloquent-relationships)
 13. [Testing](#testing)
-14. [Direct SQL Queries in Controllers](#direct-sql-queies-in-controllers)
+14. [Direct SQL Queries in Controllers](#direct-sql-queries-in-controllers)
 15. [Database Querying](#database-querying)
 16. [Validation](#validation)
 17. [Security Concerns](#security-concerns)
@@ -28,9 +28,9 @@
 25. [Mass assignment without guarded fields](#mass-assignment-without-guarded-fields)
 26. [Lack of pagination for large datasets](#lack-of-pagination-for-large-datasets)
 27. [Use config and language files, constants instead of text in the code](#use-config-and-language-files-constants-instead-of-text-in-the-code)
-28. [Use Constants for Repeated Values](#use-constants-for-repeated-values)
+28. [Using Constants for Repeated Values](#using-constants-for-repeated-values)
 29. [API Rate Limiting](#api-rate-limiting)
-30. [Form Input Sanitazation](#form-input-sanitazation)
+30. [Form Input Sanitization](#form-input-sanitization)
 31. [Custom Helpers](#custom-helpers)
 32. [Avoid Duplicate Queries](#avoid-duplicate-queries)
 33. [Testing Practices](#testing-practices)
@@ -330,7 +330,7 @@ public function testHomePageLoadsCorrectly()
 }
 ```
 ---
-## Direct SQL Queries in Controllers 
+## Direct SQL Queries in Controllers
 ### **Bad** 
 ```php
 public function index()
