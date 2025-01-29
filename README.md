@@ -76,9 +76,9 @@ class ProductController extends Controller
     }
 }
 ```
-The Good approach follows best practices by using Eloquent ORM instead of raw queries, making the code more readable, maintainable, and reusable. It utilizes a query scope (`active()`) for filtering, improving reusability, and `compact()` for cleaner variable passing to the view.
+The **Good** approach follows best practices by using Eloquent ORM instead of raw queries, making the code more readable, maintainable, and reusable. It utilizes a query scope (`active()`) for filtering, improving reusability, and `compact()` for cleaner variable passing to the view.
 
-### Bad
+### **Bad**
 ```php
 class UserController extends Controller
 {
@@ -103,7 +103,7 @@ class UserController extends Controller
     }
 }
 ```
-### Good
+### **Good**
 ```php
 class UserController extends Controller
 {
@@ -128,7 +128,7 @@ class UserController extends Controller
     }
 }
 ```
-The Good approach improves readability, maintainability, and security by using Eloquent instead of raw queries. It leverages a Form Request (`UserRequest`) for validation, keeping the controller clean and ensuring data integrity. Using `User::create()` follows Laravel's mass assignment best practices, making the code more concise and easier to manage.
+The **Good** approach improves readability, maintainability, and security by using Eloquent instead of raw queries. It leverages a Form Request (`UserRequest`) for validation, keeping the controller clean and ensuring data integrity. Using `User::create()` follows Laravel's mass assignment best practices, making the code more concise and easier to manage.
 
 ---
 ## Middleware
@@ -154,7 +154,7 @@ public function handle($request, Closure $next)
     return $next($request);
 }
 ```
-The Good approach improves security and readability by properly checking if the user is authenticated before accessing their role. It uses `abort(403)` for cleaner error handling and leverages a role-checking method (`hasRole()`), making the code more reusable and maintainable.
+The **Good** approach improves security and readability by properly checking if the user is authenticated before accessing their role. It uses `abort(403)` for cleaner error handling and leverages a role-checking method (`hasRole()`), making the code more reusable and maintainable.
 
 ---
 ## Caching
@@ -169,7 +169,7 @@ $products = Cache::remember('products', 3600, function () {
     return Product::all();
 });
 ```
-The Good approach improves performance and efficiency by using `Cache::remember()`, which avoids unnecessary database queries. It only queries the database if the cache is empty, making the code more optimized, readable, and maintainable.
+The **Good** approach improves performance and efficiency by using `Cache::remember()`, which avoids unnecessary database queries. It only queries the database if the cache is empty, making the code more optimized, readable, and maintainable.
 
 ---
 ## Events
@@ -196,7 +196,7 @@ public function handle(UserRegistered $event)
     Mail::to($event->user->email)->send(new WelcomeMail($event->user));
 }
 ```
-The Good approach follows the event-driven design pattern, improving scalability and maintainability. By dispatching a `UserRegistered` event, it decouples the email-sending logic from the controller, making it easier to manage and extend (e.g., logging, notifications). This keeps the controller clean and adheres to Single Responsibility Principle (SRP).
+The **Good** approach follows the event-driven design pattern, improving scalability and maintainability. By dispatching a `UserRegistered` event, it decouples the email-sending logic from the controller, making it easier to manage and extend (e.g., logging, notifications). This keeps the controller clean and adheres to Single Responsibility Principle (SRP).
 
 ---
 ## Logging
@@ -208,7 +208,7 @@ Log::info('Something went wrong: ' . $e->getMessage());
 ```php
 Log::error('Exception encountered.', ['error' => $e->getMessage(), 'trace' => $e->getTraceAsString()]);
 ```
-The Good approach improves error logging and debugging by using `Log::error()` instead of `Log::info()`, ensuring proper log severity. It also logs structured data (`error` message and `trace`), making it easier to analyse issues and track errors efficiently.
+The **Good** approach improves error logging and debugging by using `Log::error()` instead of `Log::info()`, ensuring proper log severity. It also logs structured data (`error` message and `trace`), making it easier to analyse issues and track errors efficiently.
 
 ---
 ## Commands
@@ -226,7 +226,7 @@ public function handle()
     Order::pending()->delete();
 }
 ```
-The Good approach improves readability, maintainability, and reusability by using Eloquent instead of raw queries. It leverages a query scope (`pending()`) for filtering, making the code cleaner and reusable across the application.
+The **Good** approach improves readability, maintainability, and reusability by using Eloquent instead of raw queries. It leverages a query scope (`pending()`) for filtering, making the code cleaner and reusable across the application.
 
 ---
 ## Notifications
@@ -238,7 +238,7 @@ Mail::to($user->email)->send(new ResetPasswordMail($token));
 ```php
 $user->notify(new ResetPasswordNotification($token));
 ```
-The Good approach improves flexibility and maintainability by using Laravel's notification system instead of directly sending an email. This allows sending password reset notifications via multiple channels (e.g., email, SMS) without modifying the core logic, making the code more scalable and reusable.
+The **Good** approach improves flexibility and maintainability by using Laravel's notification system instead of directly sending an email. This allows sending password reset notifications via multiple channels (e.g., email, SMS) without modifying the core logic, making the code more scalable and reusable.
 
 ---
 ## API Responses
@@ -253,7 +253,7 @@ return response()->json([
     'data' => $data,
 ], 200);
 ```
-The Good approach improves consistency and clarity in API responses by explicitly including a `status` field, making it easier for clients to handle responses. This follows best practices for structured API responses, improving readability and maintainability.
+The **Good** approach improves consistency and clarity in API responses by explicitly including a `status` field, making it easier for clients to handle responses. This follows best practices for structured API responses, improving readability and maintainability.
 
 ---
 ## Blade Templates
@@ -269,6 +269,8 @@ The Good approach improves consistency and clarity in API responses by explicitl
     <p>Welcome Admin</p>
 @endcan
 ```
+The **Good** approach improves security and maintainability by using Laravel's authorization policies (`@can`). Instead of directly checking the role, it leverages permission logic, making it more scalable, reusable, and secure by centralizing access control.
+
 ---
 ## Direct querying in Blade files
 ### **Bad**
@@ -294,6 +296,8 @@ public function index()
     <p>{{ $user->name }}</p>
 @endforeach
 ```
+The **Good** approach improves performance, readability, and maintainability by following the MVC pattern. Fetching data in the controller prevents query execution inside the Blade view, reducing N+1 query issues and keeping the view clean and focused on presentation.
+
 ---
 ## Using `echo` in Blade files
 ### **Bad**
@@ -308,6 +312,10 @@ public function index()
 ```php
 <p>{{ $user->name ?? 'Guest' }}</p>
 ```
+The **Good** approach improves readability and security by using Blade's `{{ }}` syntax, which automatically escapes output, preventing XSS attacks.
+
+The **Even Better** approach adds a null coalescing fallback (`?? 'Guest'`), ensuring a default value is displayed if `$user->name` is `null`, improving user experience and preventing errors.
+
 ---
 ## Eloquent Relationships
 ### **Bad**
@@ -318,6 +326,8 @@ $comments = DB::table('comments')->where('post_id', $postId)->get();
 ```php
 $comments = $post->comments;
 ```
+The **Good** approach improves readability, maintainability, and performance by leveraging Eloquent relationships instead of raw queries. Using `$post->comments` utilizes the defined relationship in the model, making the code cleaner, reusable, and more efficient by reducing direct database queries.
+
 ---
 ## Testing
 ### **Bad**
@@ -337,6 +347,11 @@ public function testHomePageLoadsCorrectly()
         ->assertDontSee('Error');
 }
 ```
+The **Good** approach improves clarity, coverage, and maintainability in testing by:
+- Using a descriptive test method name (`testHomePageLoadsCorrectly`) for better readability.
+- Adding assertions (`assertSee`, `assertDontSee`) to check for specific content, ensuring the page loads correctly.
+- Making tests more robust and meaningful, catching potential issues beyond just the status code.
+
 ---
 ## Direct SQL Queries in Controllers
 ### **Bad** 
@@ -357,6 +372,12 @@ public function index()
     return response()->json($users);
 }
 ```
+The **Good** approach improves readability, maintainability, and security by using Eloquent (`User::all()`) instead of raw SQL queries. This ensures:
+- Cleaner and more expressive code
+- Built-in protection against SQL injection
+- Easier integration with Eloquent features (e.g., scopes, relationships)
+- Database abstraction, making it easier to switch databases if needed
+
 ---
 ## Database Querying
 ### **Bad**
@@ -383,6 +404,12 @@ class UserController extends Controller
     }
 }
 ```
+The **Good** approach improves performance, readability, and maintainability by:
+- Using Eloquent relationships (`with('orders')`) instead of raw joins, making the query more expressive and easier to manage.
+- Leveraging `whereHas()` to filter users efficiently based on their orders, reducing unnecessary data retrieval.
+- Eager loading (`with()`) to prevent N+1 query issues, optimizing database performance.
+- Keeping the controller clean and following Laravel best practices.
+
 ---
 ## Validation
 ### **Bad**
@@ -418,6 +445,11 @@ public function store(UserRequest $request)
     $user = User::create($request->validated());
 }
 ```
+The **Good** approach improves security, readability, and maintainability by:
+- Using a Form Request (`UserRequest`) to handle validation, keeping the controller clean and enforcing data integrity.
+- Utilizing mass assignment (`User::create()`), making the code more concise and readable while adhering to Laravel's best practices.
+- Ensuring better security by preventing unvalidated data from being stored, reducing the risk of injection attacks or invalid data.
+
 ---
 ## Security Concerns
 ### **Bad** 
@@ -447,6 +479,11 @@ public function login(Request $request)
     return back()->withErrors(['email' => 'Invalid credentials']);
 }
 ```
+The **Good** approach improves security, readability, and maintainability by:
+- Using `Auth::attempt($credentials)`, which automatically handles user retrieval and password verification, reducing manual checks.
+- Ensuring cleaner and more concise code, making it easier to read and maintain.
+- Relying on Laravel’s authentication system, which includes built-in security measures like throttling and hashing, reducing the risk of security vulnerabilities.
+
 ---
 ## Error Handling
 ### **Bad**
@@ -471,6 +508,11 @@ public function show($id)
     return view('users.show', compact('user'));
 }
 ```
+The **Good** approach improves readability, efficiency, and error handling by:
+- Using `findOrFail($id)`, which automatically returns a 404 error response if the user is not found, eliminating the need for manual checks.
+- Keeping the code clean and concise, making it easier to read and maintain.
+- Leveraging Laravel’s built-in exception handling, which ensures a standardized error response across the application.
+
 ---
 ## File Uploads
 ### **Bad**
