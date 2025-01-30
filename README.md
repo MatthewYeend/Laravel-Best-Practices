@@ -559,6 +559,12 @@ public function upload(Request $request)
     return response()->json(['path' => $path]);
 }
 ```
+The **Good** approach improves security, validation, and maintainability by:
+- Validating the uploaded file to ensure it is an image with allowed formats and size limits, preventing security risks.
+- Using `store()` instead of `move()`, which leverages Laravel's filesystem abstraction, ensuring better security and flexibility.
+- Storing files in the configured storage disk (`public`), making it easier to manage and retrieve uploaded files.
+- Returning a JSON response with the file path, making it suitable for APIs and frontend
+
 ---
 ## User model 
 ### **Full name**
@@ -583,6 +589,13 @@ public function getFullNameLong(): string
     return $this->title . ' ' . ($this->first_name ?? '') . ' ' . ($this->middle_name ?? '') . ' ' . ($this->last_name ?? '');
 }
 ```
+The **Good** approach improves flexibility and maintainability by:
+- Dynamically using the `title` property instead of hardcoding `'Mr.'`, making it adaptable for different titles.
+
+The **Better** approach further enhances robustness by:
+- Using the null coalescing operator (`?? ''`), preventing potential `null` values from causing unwanted gaps or errors in the output.
+- This ensures a consistent and clean full name format regardless of missing values.
+
 ### **Short name**
 ### **Bad**
 ```php
@@ -599,6 +612,11 @@ public function getFullNameShort(): string
     return $firstNameInitial . ' ' . $this->last_name;
 }
 ```
+The **Good** approach improves robustness and prevents errors by:
+- Handling cases where `first_name` might be empty or null, avoiding potential undefined index errors.
+- Using a conditional check (`!empty($this->first_name)`) to ensure the first name exists before accessing its first character.
+- Providing a cleaner and safer way to format the short name, preventing unexpected issues in edge cases.
+
 ---
 ## Hardcoding configuration values
 ### **Bad** 
@@ -619,6 +637,11 @@ public function sendEmail()
     Mail::to(config('mail.default_to_address'))->send(new App\Mail\WelcomeMail());
 }
 ```
+The **Good** approach improves security, maintainability, and flexibility by:
+- Using Laravel’s `Mail` facade, which integrates with various mail drivers (SMTP, Mailgun, Postmark, etc.), making email handling more reliable and configurable.
+- Avoiding hardcoded email addresses by using `config('mail.default_to_address')`, ensuring environment-based configuration.
+- Sending a properly structured Mailable (`WelcomeMail`), making emails reusable, testable, and maintainable.
+
 ---
 ## Not using Route Model Binding
 ### **Bad**
@@ -639,6 +662,12 @@ public function show(User $user)
     return view('user.show', compact('user'));
 }
 ```
+
+The **Good** approach improves readability, efficiency, and error handling by:
+- Using route model binding (`User $user`), which automatically retrieves the user by ID, eliminating the need for a manual query.
+- Automatically returning a 404 response if the user is not found, simplifying error handling.
+- Keeping the controller method cleaner and more concise, improving maintainability.
+
 ---
 ## Hardcoding Dependencies instead of using Dependency Injection
 ### **Bad**
@@ -658,6 +687,11 @@ public function sendNotification(Mailer $mailer)
     $mailer->send('Hello World');
 }
 ```
+The **Good** approach improves maintainability, testability, and dependency management by:
+- Using dependency injection (`Mailer $mailer`) instead of manually instantiating the class, making the code more flexible and easier to test.
+- Allowing Laravel's service container to handle dependencies, making it easier to swap implementations (e.g., using a mock for testing).
+- Promoting cleaner and more reusable code by following the Dependency Injection (DI) principle.
+
 ---
 ## Hardcoding configurations
 ### **Bad**
@@ -668,28 +702,11 @@ $apiKey = '12345'; // API key hardcoded
 ```php
 $apiKey = config('services.api.key');
 ```
----
-### **Bad**
-```php
-public function uploadFile()
-{
-    $path = env('UPLOAD_PATH', 'uploads/default');
-    Storage::put($path . '/file.txt', 'content');
-}
-```
-### **Good**
-Inside `config/filesystems.php`
-```php
-upload_path => env('UPLOADED_PATH', 'uploads/default');
-```
-Inside controller 
-```php
-public function uploadFile()
-{
-    $path = config('filesystems.upload_path');
-    Storage::put($path . '/file.txt', 'content');
-}
-```
+The **Good** approach improves security, maintainability, and flexibility by:
+- Storing the API key in Laravel's configuration files (`config/services.php`), preventing hardcoded sensitive information.
+- Allowing easy environment-based configuration by fetching the key from `.env`, making it adaptable for different environments (local, staging, production).
+- Enhancing security by keeping sensitive data out of the codebase, reducing the risk of exposure in version control.
+
 ---
 ## Mass assignment without guarded fields
 ### **Bad**
@@ -714,6 +731,12 @@ public function store(Request $request)
     User::create($data);
 }
 ```
+The **Good** approach improves security, data integrity, and maintainability by:
+- Using `$fillable` in the model to prevent mass assignment vulnerabilities, ensuring only allowed fields are mass-assigned.
+- Explicitly selecting input fields (`only(['name', 'email', 'password'])`), preventing unwanted or malicious data from being stored.
+- Hashing passwords (`bcrypt($data['password'])`) before storing them, ensuring proper security practices.
+- Making the code cleaner and more maintainable, following Laravel's best practices.
+
 ---
 ## Lack of pagination for large datasets
 ### **Bad**
@@ -732,6 +755,11 @@ public function index()
     return response()->json($users);
 }
 ```
+The **Good** approach improves performance, scalability, and user experience by:
+- Using pagination (`paginate(10)`) instead of retrieving all records at once, preventing potential performance issues with large datasets.
+- Returning a structured response that includes pagination metadata (e.g., total pages, current page), making it easier for frontend applications to handle.
+- Following best practices for API responses, ensuring efficient data retrieval without overwhelming the database or API consumers.
+
 ---
 ## Use config and language files, constants instead of text in the code
 ### **Bad**
@@ -752,6 +780,12 @@ public function isNormal()
 
 return back()->with('message', __('app.article_added'));
 ```
+
+The **Good** approach improves maintainability, readability, and localization by:
+- Using a constant (`Article::TYPE_NORMAL`) instead of a hardcoded string (`'normal'`), reducing errors and making the code more maintainable.
+- Utilizing Laravel’s localization helper (`__('app.article_added')`), allowing the message to be easily translated into multiple languages.
+- Following clean coding principles, making the code more structured and adaptable to future changes.
+
 ---
 ## Using Constants for Repeated Values
 ### **Bad**
