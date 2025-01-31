@@ -841,10 +841,9 @@ $input = $request->all();
 $input = $request->only(['name', 'email', 'password']);
 ```
 The **Good** approach improves security, data integrity, and maintainability by:
-
-✅ Using `only(['name', 'email', 'password'])` to explicitly specify which fields to retrieve, preventing mass assignment vulnerabilities.
-✅ Avoiding unintended or malicious input from being processed if extra fields are sent in the request.
-✅ Making the code more predictable and secure, following Laravel best practices for handling user input.
+- Using `only(['name', 'email', 'password'])` to explicitly specify which fields to retrieve, preventing mass assignment vulnerabilities.
+- Avoiding unintended or malicious input from being processed if extra fields are sent in the request.
+- Making the code more predictable and secure, following Laravel best practices for handling user input.
 
 ---
 ## Custom Helpers
