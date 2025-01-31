@@ -808,6 +808,12 @@ if ($user->type === User::TYPE_ADMIN) {
     // Perform action
 }
 ```
+The **Good** approach improves maintainability, readability, and reduces errors by:
+- Defining constants (`User::TYPE_ADMIN`) instead of using hardcoded strings, making the code easier to update and less error-prone.
+- Enhancing code clarity by centralizing user type definitions in the `User` model.
+- Preventing typos and inconsistencies when checking user types throughout the application.
+- Making it easier to refactor if the user type values need to change in the future.
+
 ---
 ## API Rate Limiting
 ### **Bad**
@@ -818,6 +824,12 @@ Route::get('/api/resource', [ApiController::class, 'index']);
 ```php
 Route::middleware('throttle:60,1')->get('/api/resource', [ApiController::class, 'index']);
 ```
+The **Good** approach improves security, performance, and API reliability by:
+
+- Adding rate limiting (`throttle:60,1`), which restricts the number of requests (60 per minute) to prevent abuse and protect server resources.
+- Enhancing API security by reducing the risk of DDoS attacks or excessive requests from malicious users.
+- Following best practices for API development, ensuring fair usage and better user experience.
+
 ---
 ## Form Input Sanitization
 ### **Bad**
@@ -828,6 +840,12 @@ $input = $request->all();
 ```php
 $input = $request->only(['name', 'email', 'password']);
 ```
+The **Good** approach improves security, data integrity, and maintainability by:
+
+✅ Using `only(['name', 'email', 'password'])` to explicitly specify which fields to retrieve, preventing mass assignment vulnerabilities.
+✅ Avoiding unintended or malicious input from being processed if extra fields are sent in the request.
+✅ Making the code more predictable and secure, following Laravel best practices for handling user input.
+
 ---
 ## Custom Helpers
 ### **Bad**
@@ -855,6 +873,12 @@ Register the helper in `composer.json`:
     ]
 }
 ```
+The **Good** approach improves reusability, maintainability, and performance by:
+- Defining the function in a helper file, making it globally accessible without needing to repeat the logic in multiple places.
+- Using `function_exists()` to prevent redeclaration errors and avoid conflicts.
+- Autoloading the helper via `composer.json`, ensuring it is available throughout the application without manual imports.
+- Following best practices for reusable utility functions, making the codebase cleaner and more maintainable.
+
 ---
 ## Avoid Duplicate Queries
 ### **Bad**
@@ -870,6 +894,11 @@ foreach ($users as $user) {
     $profile = $user->profile;
 }
 ```
+The **Good** approach improves performance and database efficiency by:
+- Using Eager Loading (`with('profile')`) to retrieve related profiles in a single query, preventing the N+1 query problem.
+- Reducing database load by fetching all necessary data at once, improving response time and scalability.
+- Following Laravel best practices for optimizing queries, ensuring a more efficient and maintainable codebase.
+
 ---
 ## Testing Practices
 ### **Bad**
@@ -889,6 +918,11 @@ public function testUserCanLogin()
         ->assertJsonStructure(['token']);
 }
 ```
+The **Good** approach improves test accuracy, API validation, and reliability by:
+- Checking the response structure with `assertJsonStructure(['token'])`, ensuring the login API returns a token (or expected data).
+- Enhancing test coverage by verifying both the HTTP status and the response format, making the test more meaningful.
+- Following best practices for API authentication testing, ensuring the expected output is correctly implemented.
+
 ---
 ## Service Container Binding
 ### **Bad**
@@ -904,6 +938,13 @@ Usage:
 ```php
 $userRepo = app(UserRepository::class);
 ```
+
+The **Good** approach improves maintainability, testability, and flexibility by:
+- Using Dependency Injection via Laravel’s Service Container, making the code loosely coupled and easier to swap implementations.
+- Following the Repository Pattern, which separates data access logic from business logic, enhancing code organization.
+- Simplifying unit testing by allowing mocking of `UserRepository`, making tests more isolated and reliable.
+- Promoting scalability, as different repository implementations (e.g., `CacheUserRepository`) can be easily introduced without modifying dependent code.
+
 ---
 ## Repository Pattern
 ### **Bad**
@@ -952,6 +993,12 @@ class UserController extends Controller
     }
 }
 ```
+The **Good** approach improves code maintainability, flexibility, and testability by:
+- Applying the Repository Pattern, which separates database logic from controllers, making code more modular.
+- Using Dependency Injection, allowing different implementations (e.g., `CacheUserRepository`) without modifying controller logic.
+- Enhancing testability, as the repository can be easily mocked for unit tests.
+- Following SOLID principles, particularly Dependency Inversion (D in SOLID), by depending on an interface rather than a concrete class.
+
 ---
 ## Using Static Methods
 ### **Bad**
@@ -979,6 +1026,12 @@ Usage:
 $userHelper = new UserHelper();
 $userHelper->isAdmin($user);
 ```
+The **Good** approach improves testability, flexibility, and adherence to best practices by:
+- Avoiding static methods, which make unit testing harder since they cannot be mocked.
+- Allowing Dependency Injection, enabling the helper to be injected where needed instead of relying on direct static calls.
+- Following Object-Oriented Principles, making the helper extensible and reusable in different contexts.
+- Improving maintainability, as instance-based classes can be easily replaced or extended without modifying all static calls.
+
 ---
 ## Queue Jobs
 ### **Bad**
@@ -1004,6 +1057,12 @@ class NotificationJob implements ShouldQueue
     }
 }
 ```
+The **Good** approach improves performance and scalability by:
+- Using a Queue: Offloading email sending to a background job prevents request delays.
+- Enhancing User Experience: The user does not have to wait for the email to be sent before getting a response.
+- Better Error Handling & Retries: Jobs can be retried automatically if they fail.
+- Improving Maintainability: Separating concerns makes the code more modular and testable.
+
 ---
 ## Centralised Business Logic
 ### **Bad**
@@ -1023,6 +1082,12 @@ class DiscountService
     }
 }
 ```
+The **Good** approach improves separation of concerns, testability, and maintainability by:
+- Encapsulating the logic in a service class: This makes the discount calculation reusable across the application, making it easier to manage changes.
+- Following Single Responsibility Principle (SRP): The `DiscountService` has a single responsibility—handling the discount calculation.
+- Enhancing testability: The service can be mocked or tested independently, making unit tests cleaner and more focused.
+- Improving maintainability: The calculation logic is centralized in one place, so future updates or changes to the discount logic are easier to implement without modifying multiple parts of the codebase.
+
 ---
 ## Use Proper Exception Handling
 ### **Bad**
@@ -1048,6 +1113,12 @@ public function show($id)
 }
 
 ```
+The **Good** approach improves readability, simplicity, and error handling by:
+- Using `findOrFail`: This method automatically throws a `ModelNotFoundException` if the user is not found, simplifying the code and removing the need for manual error handling.
+- Reducing boilerplate: No need to manually check if the user exists and return a custom error message; `findOrFail` handles this efficiently.
+- Automatic Exception Handling: The `findOrFail` method triggers Laravel's built-in exception handler, which will return a proper 404 response.
+- Improving consistency: The use of `findOrFail` aligns with Laravel's conventions, ensuring the code is consistent with the framework's error handling approach.
+
 ---
 ## Best Practices accepted by community
 Laravel has some built in functionality and community packages can help instead of using 3rd party packages and tools.
