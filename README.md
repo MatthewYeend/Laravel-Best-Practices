@@ -1316,3 +1316,25 @@ And, follow naming conventions accepted by the Laravel community:
 - What are seeding and factories in Laravel?
   - **Seeder:** Seeder classes are used to populate the database with sample data.
   - **Factory:** Factories are used to generate fake data for models. They can be used to create many records easily.
+- What are the key new features in Laravel 11?
+  - Laravel 11 introduces several major changes:
+    - **Simplified Application Structure:** Removed `Kernel.php` files and unnecessary service providers.
+    - **Laravel Reverb:** A built-in WebSocket server for real-time apps.
+    - **SQLite by Default:** Used for database, cache, and queue storage.
+    - **Health Routing:** A built-in `/up` endpoint for application health checks.
+    - **Queue Interaction Testing:** New `withFakeQueueInteractions()` method.
+    - **Graceful Encryption Key Rotation:** Allows easy key rotation without data loss.
+- How does Laravel 11 differ from Laravel 10?
+  - No `Http/Kernel.php` and `Console/Kernel.php` (Middleware and scheduling logic moved to framework).
+  - Single `AppServiceProvider.php` instead of multiple providers.
+  - Built-in WebSocket server (Reverb).
+  - Simpler database defaults (SQLite for sessions, cache, and queues).
+  - Performance optimizations like eager loading limits.
+- What is health routing in Laravel 11?
+  - Laravel 11 introduces a built-in `/up` endpoint that returns a `200 OK` response if the application is running. This helps with uptime monitoring in production environments.
+    `GET /up`
+    ```json
+    {
+        "status": "ok"
+    }
+    ```
