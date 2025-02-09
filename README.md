@@ -1178,6 +1178,14 @@ And, follow naming conventions accepted by the Laravel community:
 | Seeder | Singular | `UserSeeder` | `UsersSeeder` |
 | Language File Names | Lower case, snake_case | `user_management.php`, `order_status.php` | `UserManagement.php`, `OrderStatus.php` |
 | Language Files | Lower case, snake_case | `'login_failed'`, `'user'` | `'LoginFailed'`, `'User'` |
+| Event | Verb in past tense | `userRegistered` | `RegisterUserEvent` |
+| Listener | Verb in present tense | `SendUserWelcomeEmail` | `UserWelcomeEmailSender` | 
+| Job | Verb in present tense | `ProcessPayment` | `PaymentProcessingJob` | 
+| Command | Verb in present tense | `ClearCache` | `CacheClearCommand` | 
+| Policy | Singular, matching model | `ArticlePolicy` | `ArticlesPolicy` | 
+| Helper Function | snake_case | `format_date()` | `formatDate() ` |
+| Enum Cases | UPPER_CASE | `UserType::ADMIN` | `UserType::Admin`, `UserType::admin` |
+
 ---
 ## Interview Questions
 ### Beginner
