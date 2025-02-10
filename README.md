@@ -1142,7 +1142,22 @@ Laravel has some built in functionality and community packages can help instead 
 | Generating testing data | Seeder classes, Model Factories, Faker | Creating testing data manually |
 | Task scheduling | Laravel Task Scheduler | Scripts and 3rd party packages |
 | DB | MySQL, PostgreSQL, SQLite, SQL Server | MongoDB|
+| Queues & Job Handling | Laravel Queues, Horizon | RabbitMQ, Beanstalkd |
+| Rate Limiting | Laravel Throttle Middleware | Custom-built solutions | 
+| Logging | Monolog (built-in) | Custom logging solutions |
+| Error Handling | Laravel Exception Handler | Sentry, Bugsnag |
+| Email | Laravel Mail (Mailables) | PHPMailer, SwiftMailer |
+| Notifications | Laravel Notifications | Custom-built solutions |
+| File Storage | Laravel Filesystem (Flysystem) | Direct file system manipulation |
+| Background Jobs | Laravel Queues | Custom cron jobs |
+| Caching | Laravel Cache (Redis, Memcached, File) | Custom caching solutions |
+| Search | Laravel Scout | Elasticsearch, Algolia |
+| Multi-Tenancy | Laravel Tenancy | Custom implementations | 
+| Monitoring & Debugging | Laravel Telescope | Custom logging dashboards |
+| Security | Laravel Security Middleware | Custom security implementations |
+| Multi-Language Support | Laravel Localization | Poedit, custom solutions |
 
+---
 ## Laravel Naming Conventions 
 To follow PSR standards
 And, follow naming conventions accepted by the Laravel community: 
