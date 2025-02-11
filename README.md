@@ -1156,6 +1156,9 @@ Laravel has some built in functionality and community packages can help instead 
 | Monitoring & Debugging | Laravel Telescope | Custom logging dashboards |
 | Security | Laravel Security Middleware | Custom security implementations |
 | Multi-Language Support | Laravel Localization | Poedit, custom solutions |
+| API Documentation | Laravel OpenAPI, L5-Swagger | Postman collections |
+| Social Authentication | Laravel Socialite	| Custom OAuth integrations |
+| PDF Generation | DomPDF, Snappy | TCPDF, custom solutions |
 
 ---
 ## Laravel Naming Conventions 
