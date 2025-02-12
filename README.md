@@ -1159,6 +1159,7 @@ Laravel has some built in functionality and community packages can help instead 
 | API Documentation | Laravel OpenAPI, L5-Swagger | Postman collections |
 | Social Authentication | Laravel Socialite	| Custom OAuth integrations |
 | PDF Generation | DomPDF, Snappy | TCPDF, custom solutions |
+| Feature Flags | Laravel Pennant | Custom feature toggling |
 
 ---
 ## Laravel Naming Conventions 
