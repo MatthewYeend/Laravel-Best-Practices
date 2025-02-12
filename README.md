@@ -1123,43 +1123,42 @@ The **Good** approach improves readability, simplicity, and error handling by:
 Laravel has some built in functionality and community packages can help instead of using 3rd party packages and tools.
 | Task | Standard Tools | 3rd Party Tools | 
 |---|---|---|
-| Authorization | Policies | Entrust, Sentinel and other packages |
-| Compiling Assests | Laravel Mix, Vite | Grunt, Gulp, and other packages |
-| Development Environment | Laravel Sail, Homestead | Docker |
-| Deployment | Laravel Forge | Deployer and other solutions | 
-| Unit Testing | PHPUnit | Pest |
-| Browser Testing | Laravel Dusk | Codeception | 
-| DB | Eloquent | SQL, Doctrine |
-| Templates | Blade | Twig |
-| Working With Data | Laravel Collections | Arrays |
-| Form Validation | Request classes | Validation in controller | 
-| Authentication | Built In | 3rd party packages, your own solution | 
-| API authentication | Laravel Passport, Laravel Sanctum | 3rd party JWT and OAuth packages | 
-| Creating an API | Built in | Dingo API or similar |
-| Working with DB structure | Migrations | Working directly with the DB |
-| Localisition | Built in | 3rd party packages |
-| Realtime user interfaces | Laravel Echo, Pusher | 3rd party packages and working with WebSockets directly |
-| Generating testing data | Seeder classes, Model Factories, Faker | Creating testing data manually |
-| Task scheduling | Laravel Task Scheduler | Scripts and 3rd party packages |
-| DB | MySQL, PostgreSQL, SQLite, SQL Server | MongoDB|
-| Queues & Job Handling | Laravel Queues, Horizon | RabbitMQ, Beanstalkd |
-| Rate Limiting | Laravel Throttle Middleware | Custom-built solutions | 
-| Logging | Monolog (built-in) | Custom logging solutions |
-| Error Handling | Laravel Exception Handler | Sentry, Bugsnag |
-| Email | Laravel Mail (Mailables) | PHPMailer, SwiftMailer |
-| Notifications | Laravel Notifications | Custom-built solutions |
-| File Storage | Laravel Filesystem (Flysystem) | Direct file system manipulation |
-| Background Jobs | Laravel Queues | Custom cron jobs |
-| Caching | Laravel Cache (Redis, Memcached, File) | Custom caching solutions |
-| Search | Laravel Scout | Elasticsearch, Algolia |
-| Multi-Tenancy | Laravel Tenancy | Custom implementations | 
-| Monitoring & Debugging | Laravel Telescope | Custom logging dashboards |
-| Security | Laravel Security Middleware | Custom security implementations |
-| Multi-Language Support | Laravel Localization | Poedit, custom solutions |
+| API authentication | Laravel Passport, Laravel Sanctum | 3rd party JWT and OAuth packages |
 | API Documentation | Laravel OpenAPI, L5-Swagger | Postman collections |
-| Social Authentication | Laravel Socialite	| Custom OAuth integrations |
-| PDF Generation | DomPDF, Snappy | TCPDF, custom solutions |
+| Authentication | Built-in | 3rd party packages, your own solution |
+| Background Jobs | Laravel Queues | Custom cron jobs |
+| Browser Testing | Laravel Dusk | Codeception |
+| Caching | Laravel Cache (Redis, Memcached, File) | Custom caching solutions |
+| Compiling Assets | Laravel Mix, Vite | Grunt, Gulp, and other packages |
+| Creating an API | Built-in | Dingo API or similar |
+| DB | Eloquent | SQL, Doctrine |
+| DB (Database Support) | MySQL, PostgreSQL, SQLite, SQL Server | MongoDB |
+| Deployment | Laravel Forge | Deployer and other solutions |
+| Development Environment | Laravel Sail, Homestead | Docker |
+| Email | Laravel Mail (Mailables) | PHPMailer, SwiftMailer |
+| Error Handling | Laravel Exception Handler | Sentry, Bugsnag |
 | Feature Flags | Laravel Pennant | Custom feature toggling |
+| File Storage | Laravel Filesystem (Flysystem) | Direct file system manipulation |
+| Form Validation | Request classes | Validation in controller |
+| Generating Testing Data | Seeder classes, Model Factories, Faker | Creating testing data manually |
+| Image Manipulation | Intervention Image | GD, ImageMagick |
+| Localization | Built-in | 3rd party packages |
+| Logging | Monolog (built-in) | Custom logging solutions |
+| Multi-Language Support | Laravel Localization | Poedit, custom solutions |
+| Multi-Tenancy | Laravel Tenancy | Custom implementations |
+| Notifications | Laravel Notifications | Custom-built solutions |
+| PDF Generation | DomPDF, Snappy | TCPDF, custom solutions |
+| Queues & Job Handling | Laravel Queues, Horizon | RabbitMQ, Beanstalkd |
+| Rate Limiting | Laravel Throttle Middleware | Custom-built solutions |
+| Real-time User Interfaces | Laravel Echo, Pusher | 3rd party packages and working with WebSockets directly |
+| Search | Laravel Scout | Elasticsearch, Algolia |
+| Security | Laravel Security Middleware | Custom security implementations |
+| Social Authentication | Laravel Socialite | Custom OAuth integrations |
+| Task Scheduling | Laravel Task Scheduler | Scripts and 3rd party packages |
+| Templates | Blade | Twig |
+| Unit Testing | PHPUnit | Pest |
+| Working With Data | Laravel Collections | Arrays |
+| Working with DB Structure | Migrations | Working directly with the DB |
 
 ---
 ## Laravel Naming Conventions 
