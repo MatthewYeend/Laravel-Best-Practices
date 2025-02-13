@@ -1166,43 +1166,43 @@ To follow PSR standards
 And, follow naming conventions accepted by the Laravel community: 
 | What | How | Good | Bad |
 |---|---|---|---|
-| Controller | Singular | `ArticaleController` | `ArticalesController` |
-| Route | Plural | `articles/1` | `article/1` |
-| Route Name | snake_case with dot notation | `users.show_active` | `users.show-active`, `show-active-users` |
-| Model | Singular | `User` | `Users` |
-| hasOne or belongsTo relationship | Singular | `articleComment` | `articleComments`, `article_comments` |
-| All other relationships | Plural | `articleComments` | `articleComment`, `article_comments` | 
-| Table | Plural | `article_comments` | `article_comment`, `articleComments` |
-| Pivot Table | Singular model names in alphabetical order | `article_user` | `users_article`, `articles_users` |
-| Table Column | snake_case without model name | `meta_title` | `MetaTitle`, `article_meta_title` |
-| Model Proprty | snake_case | `$model->created_at` | `$model->createdAt` |
-| Foreign Key | Singular model name with _id suffix | `article_id` | `ArticleId`, `id_article`, `article_id` |
-| Primary Key | - | `id` | `custom_id` | 
-| Migration | - | `2017_01_01_000000_create_articles_table` | `2017_01_01_000000_articles` | 
-| Method | camelCase | `getAll` | `get_all` |
-| Method in resource controller | Table | `store` | `saveArticle` |
-| Method in test class | camelCase | `testGuestCannotSeeArticle` | `test_guest_cannot_see_article` | 
-| Variable | camelCase | `$articlesWithAuthor` | `$articles_with_author` |
 | Collection | Descriptive, Plural | `$activeUsers = User::active()->get()` | `$active`, `$data` |
-| Object | Descriptive, Singular | `$activeUser = User::active()->first()` | `$users`, `$obj` | 
-| Config and language files index | snake_case | `articles_enabled` | `ArticlesEnabled`, `articles-enabled` |
-| View | kabab-case | `show-filtered.blade.php` | `showFiltered.blade.php`, `show_filtered.blade.php` |
+| Command | Verb in present tense | `ClearCache` | `CacheClearCommand` |
 | Config | snake_case | `google_calendar.php` | `googleCalendar.php`, `google-calendar.php` |
-| Contract (Interface) | Adjective or noun | `AuthenticationInterface` | `Authenticatable`, `IAuthentication` | 
-| Trait | Adjective | `Notifiable` | `NotificationTrait` |
-| Trait (PSR) | Adjective | `NotifiableTrait` | `Notification` |
+| Config and language files index | snake_case	articles_enabled | `ArticlesEnabled`, `articles-enabled` |
+| Contract (Interface) | Adjective or noun | `AuthenticationInterface` | `Authenticatable`, `IAuthentication` |
+| Controller | 	Singular | `ArticleController` | `ArticlesController` |
 | Enum | Singular | `UserType` | `UserTypes`, `UserTypeEnum` |
-| Form Request | Singular | `UpdateUserRequest` | `UpdateUserFormRequest`, `UserFormRequest`, `UserRequest` | 
-| Seeder | Singular | `UserSeeder` | `UsersSeeder` |
+| Enum Cases | UPPER_CASE | `UserType::ADMIN` | `UserType::Admin`, `UserType::admin` |
+| Event | Verb in past tense | `userRegistered` | `RegisterUserEvent` |
+| Foreign Key | Singular model name with `_id` suffix | `article_id` | `ArticleId`, `id_article`, `article_id` |
+| Form Request | Singular | `UpdateUserRequest` | `UpdateUserFormRequest`, `UserFormRequest`, `UserRequest` |
+| Helper Function | snake_case | `format_date()` | `formatDate()` |
+| hasOne or belongsTo relationship | Singular | `articleComment` | `articleComments`, `article_comments` |
+| Job | Verb in present tense | `ProcessPayment` | `PaymentProcessingJob` |
 | Language File Names | Lower case, snake_case | `user_management.php`, `order_status.php` | `UserManagement.php`, `OrderStatus.php` |
 | Language Files | Lower case, snake_case | `'login_failed'`, `'user'` | `'LoginFailed'`, `'User'` |
-| Event | Verb in past tense | `userRegistered` | `RegisterUserEvent` |
-| Listener | Verb in present tense | `SendUserWelcomeEmail` | `UserWelcomeEmailSender` | 
-| Job | Verb in present tense | `ProcessPayment` | `PaymentProcessingJob` | 
-| Command | Verb in present tense | `ClearCache` | `CacheClearCommand` | 
-| Policy | Singular, matching model | `ArticlePolicy` | `ArticlesPolicy` | 
-| Helper Function | snake_case | `format_date()` | `formatDate() ` |
-| Enum Cases | UPPER_CASE | `UserType::ADMIN` | `UserType::Admin`, `UserType::admin` |
+| Listener | Verb in present tense | `SendUserWelcomeEmail` | `UserWelcomeEmailSender` |
+| Method | camelCase | `getAll` | `get_all` |
+| Method in resource controller | Table | `store` | `saveArticle` |
+| Method in test class | camelCase | `testGuestCannotSeeArticle` | `test_guest_cannot_see_article` |
+| Migration | - | `2017_01_01_000000_create_articles_table` | `2017_01_01_000000_articles` |
+| Model | Singular | `User` | `Users` |
+| Model Property | snake_case | `$model->created_at` | `$model->createdAt` |
+| Object | Descriptive, Singular | `$activeUser = User::active()->first()` | `$users`, `$obj` |
+| Pivot Table | Singular model names in alphabetical order | `article_user` | `users_article`, `articles_users` |
+| Policy | Singular, matching model | `ArticlePolicy` | `ArticlesPolicy` |
+| Primary Key | - | `id` | `custom_id` |
+| Route | Plural | `articles/1` | `article/1` |
+| Route Name | snake_case with dot notation | `users.show_active` | `users.show-active`, `show-active-users` |
+| Seeder | Singular | `UserSeeder` | `UsersSeeder` |
+| Table | Plural | `article_comments` | `article_comment`, `articleComments` |
+| Table Column | snake_case without model name | `meta_title` | `MetaTitle`, `article_meta_title` |
+| Trait | Adjective | `Notifiable` | `NotificationTrait` |
+| Trait (PSR) | Adjective | `NotifiableTrait` | `Notification` |
+| Variable | camelCase | `$articlesWithAuthor` | `$articles_with_author` |
+| View | kebab-case | `show-filtered.blade.php` | `showFiltered.blade.php`, `show_filtered.blade.php` |
+| Working with DB relationships | Plural | `articleComments` | `articleComment`, `article_comments` |
 
 ---
 ## Interview Questions
