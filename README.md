@@ -41,8 +41,10 @@
 38. [Centralised Business Logic](#centralised-business-logic)
 39. [Use Proper Exception Handling](#use-proper-exception-handling)
 40. [Best Practices accepted by community](#best-practices-accepted-by-community)
-41. [Laravel Naming Conventions](#laravel-naming-conventions)
-42. [Interview Questions](#interview-questions)
+41. [Route Definitions](#route-definitions)
+42. [Route Model Binding](#route-model-binding)
+43. [Laravel Naming Conventions](#laravel-naming-conventions)
+44. [Interview Questions](#interview-questions)
     1. [Beginner](#beginner)
     2. [Intermediate](#intermediate)
     3. [Expert](#expert)
@@ -1119,6 +1121,50 @@ The **Good** approach improves readability, simplicity, and error handling by:
 - Improving consistency: The use of `findOrFail` aligns with Laravel's conventions, ensuring the code is consistent with the framework's error handling approach.
 
 ---
+
+## Route Definitions
+### **Bad**
+```php
+Route::get('/products', 'ProductController@index');
+Route::post('/products', 'ProductController@store');
+Route::get('/products/{id}', 'ProductController@show');
+```
+
+### **Good**
+```php
+use App\Http\Controllers\ProductController;
+
+Route::resource('products', ProductController::class);
+```
+
+The **Good** approach:
+- Uses `Route::resource()` for cleaner, RESTful route definitions.
+- Ensures consistency across controllers and avoids repetitive code.
+
+--- 
+## Route Model Binding
+### **Bad**
+```php
+public function show($id)
+{
+    $user = User::findOrFail($id);
+    return view('users.show', compact('user'));
+}
+```
+
+### **Good**
+```php
+public function show(User $user)
+{
+    return view('users.show', compact('user'));
+}
+```
+The **Good** approach:
+- Uses Laravel’s implicit route model binding.
+- Reduces boilerplate code and increases readability.
+
+---
+
 ## Best Practices accepted by community
 Laravel has some built in functionality and community packages can help instead of using 3rd party packages and tools.
 | Task | Standard Tools | 3rd Party Tools | 
